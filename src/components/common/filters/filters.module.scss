@@ -7,18 +7,17 @@
     column-gap: 15px;
     .category {
         display: flex;
-        background-color: #E9FCEA;
         padding: 6px 20px;
         column-gap: 8px;
         border-radius: 15px;
+        cursor: pointer;
+
         & > p {
             color: #878787;
-            &:first-child {
-                font-size: 0.9rem;
-            }
-            &:last-child {
-                font-weight: 700;
-            }
+            &:first-child { font-size: 0.9rem; }
+            &:last-child { font-weight: 700; }
         }
+        &:hover > p { color: #292929; }
+        &.active > p { color: #292929; }
     }
 }
