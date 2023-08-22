@@ -1,10 +1,15 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import './nullable.scss';
+import HomePageComponent from './components/pages/home.page';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePageComponent/>} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 

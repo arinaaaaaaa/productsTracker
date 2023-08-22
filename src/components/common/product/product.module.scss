@@ -1,0 +1,35 @@
+.productItem {
+    display: inline-block;
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+    padding: 20px;
+
+    & > .header {
+        display: flex;
+        justify-content: space-between;
+
+        & > .category {
+            padding: 4px 8px;
+            background-color: #E9FCEA;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        & > .date {
+            color: #878787;
+        }
+    }
+
+    & > .product {
+        display: flex;
+        align-items: center;
+        column-gap: 15px;
+        margin: 20px 0 0;
+        & > img {
+            height: 70px;
+        }
+        & > p {
+            font-size: 16px;
+            color: #292929;
+        }
+    }
+}

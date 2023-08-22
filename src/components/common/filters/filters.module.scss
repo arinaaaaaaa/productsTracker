@@ -1,0 +1,24 @@
+.filtersWrapper {
+    display: flex;
+    margin: 60px 0 0;
+}
+.categoriesList {
+    display: flex;
+    column-gap: 15px;
+    .category {
+        display: flex;
+        background-color: #E9FCEA;
+        padding: 6px 20px;
+        column-gap: 8px;
+        border-radius: 15px;
+        & > p {
+            color: #878787;
+            &:first-child {
+                font-size: 0.9rem;
+            }
+            &:last-child {
+                font-weight: 700;
+            }
+        }
+    }
+}

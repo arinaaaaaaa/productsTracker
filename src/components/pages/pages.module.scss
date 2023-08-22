@@ -1,0 +1,14 @@
+.pageContainer {
+    padding: 8em 12em;
+
+    & > .header {
+        font-size: 36px;
+        font-family: 'SB Sans Text Bold';
+    }
+}
+.productContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 10px;
+    margin: 40px 0 0;
+}
