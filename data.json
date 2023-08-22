@@ -1,0 +1,43 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "суши",
+            "color": "#FBEBF1",
+            "icon": "sushi"
+        }, {
+            "id": 2,
+            "name": "пицца",
+            "color": "#FDF1DC",
+            "icon": "pizza"
+        }, {
+            "id": 3,
+            "name": "бургеры",
+            "color": "#E9FCEA",
+            "icon": "burger"
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "двойная пепперони",
+            "category": 2,
+            "date": "13.04.2023"
+        }, {
+            "id": 2,
+            "name": "текка маки",
+            "category": 1,
+            "date": "12.04.2023"
+        }, {
+            "id": 3,
+            "name": "чизбургер",
+            "category": 3,
+            "date": "13.04.2023"
+        }, {
+            "id": 4,
+            "name": "сашими",
+            "category": 1,
+            "date": "10.04.2023"
+        }
+    ]
+}
