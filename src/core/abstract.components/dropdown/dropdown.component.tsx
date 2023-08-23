@@ -12,7 +12,7 @@ export default function DropdownComponent(
 
     const dropdownRef = useRef<any | null>(null);
     
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const [sort, setSort] = useState<Sort | null>(null);
 
     //Если выбрана другая категория, обнуляется сортировка
