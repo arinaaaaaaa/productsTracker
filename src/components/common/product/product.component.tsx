@@ -7,7 +7,7 @@ import styles from "./product.module.scss";
 export default function ProductComponent({ product }: { product: Product }) {
     const data = useContext(DataContext);
     let category: Category | undefined = data.data.categories.find(
-      (category) => category.id == product.category
+      (category) => category.id === product.category
     );
   
     if (!category) return null;

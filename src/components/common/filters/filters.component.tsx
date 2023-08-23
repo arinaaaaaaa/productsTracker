@@ -1,9 +1,12 @@
 import styles from './filters.module.scss';
 import { useContext, useState } from 'react';
 import { DataContext } from '../../pages/home.page';
+import { Product } from '../../../core/interfaces/products.interface';
+import { Category } from '../../../core/interfaces/categories.interface';
 
 export default function FiltersComponent() {
     const data = useContext(DataContext);
+    const {setSortedData} = useContext(DataContext);
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
   
     function getCounter(categoryId: number): number {
@@ -11,16 +14,33 @@ export default function FiltersComponent() {
 
         // Подсчет продуктов принадлежащих категории
         data.data.products.forEach((product) => 
-            product.category == categoryId ? counter ++ : null
+            product.category === categoryId ? counter ++ : null
         )
 
         return counter;
     }
 
+    //Фильтрация данных по категории
     function chooseFilter(categoryId: number) {
-        if (selectedCategoryId !== categoryId) setSelectedCategoryId(categoryId)
-        else setSelectedCategoryId(null)
-    }
+        //Если нажатие не по ранее выбранной категории
+        if (selectedCategoryId !== categoryId) {
+            //Фильтрация всех данных по ID категории
+            const sortedData: { categories: Category[]; products: Product[] } = {
+                ...data.data,
+                products: data.data.products.filter((product: Product) => product.category === categoryId)
+            };
+            //В данные для отображения сохраняются отфильтрованные данные
+            setSortedData(sortedData);
+            setSelectedCategoryId(categoryId)
+        }
+        //Если повторное нажатие на уже выбранную категорию (т.е. отмена фильтрации)
+        else {
+            //Фильтры обнуляются
+            setSelectedCategoryId(null);
+            //Отображаются все данные, которые были получены с сервера
+            setSortedData(data.data);
+        }
+      }
   
     return (
       <div className={styles.filtersWrapper}>
