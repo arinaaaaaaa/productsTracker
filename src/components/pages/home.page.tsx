@@ -43,15 +43,17 @@ export default function HomePageComponent() {
 
   return (
       <DataContext.Provider value={{data, shownData, setShownData}}>
+        <div className="container">
           <div className={styles.pageContainer}>
-              <div className={styles.header}>мое приложение</div>
-              <FiltersComponent></FiltersComponent>
-              <div className={styles.productContainer}>
-                  {shownData.map((product:Product) => (
-                      <ProductComponent product={product} key={product.id}></ProductComponent>
-                  ))}
-              </div>
-          </div>
+                <div className={styles.header}>мое приложение</div>
+                <FiltersComponent></FiltersComponent>
+                <div className={styles.productContainer}>
+                    {shownData.map((product:Product) => (
+                        <ProductComponent product={product} key={product.id}></ProductComponent>
+                    ))}
+                </div>
+            </div>
+        </div>
       </DataContext.Provider>
   )
 }

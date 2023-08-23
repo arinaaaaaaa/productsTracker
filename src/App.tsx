@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import './nullable.scss';
+import './global.scss';
 import HomePageComponent from './components/pages/home.page';
 
 function App() {

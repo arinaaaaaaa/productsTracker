@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     margin: 60px 0 0;
+    flex-wrap: wrap;
+    row-gap: 20px;
 }
 .categoriesList {
     display: flex;

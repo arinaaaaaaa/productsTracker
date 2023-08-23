@@ -3,7 +3,10 @@ import { DataContext } from '../../../components/pages/home.page';
 import { Sort } from '../../interfaces/sort.interface';
 import styles from "./dropdown.module.scss";
 
-export default function DropdownComponent({ sortList, selectedCategory }: { sortList: Sort[], selectedCategory: number | null }) {
+export default function DropdownComponent(
+    { sortList, selectedCategory }: 
+    { sortList: Sort[], selectedCategory: number | null })
+{
     const {setShownData} = useContext(DataContext);
     const data = useContext(DataContext);
 
