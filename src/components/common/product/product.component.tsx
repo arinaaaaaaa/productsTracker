@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Category, Product } from "../../../core/interfaces";
 import { DataContext } from "../../pages/home.page";
 import styles from "./product.module.scss";
@@ -8,6 +8,16 @@ export default function ProductComponent({ product }: { product: Product }) {
     let category: Category | undefined = data.data.categories.find(
       (category) => category.id === product.category
     );
+
+    //Приведение даты к формату DD.MM.YY
+    function formateDate(date: Date) {
+        //Получение массива с датой вида [day, month, year]
+        const dateStr = (new Date(date)).toLocaleString().split(',')[0].split('.');
+        //"Сборка" нужно формата строки вида DD.MM.YY
+        const formateDate = `${dateStr[0]}.${dateStr[1]}.${dateStr[2].slice(-2)}`;
+
+        return formateDate;
+    }
   
     if (!category) return null;
 
@@ -15,7 +25,7 @@ export default function ProductComponent({ product }: { product: Product }) {
         <div className={styles.productItem}>
             <div className={styles.header}>
                 <div className={styles.category} style={{ backgroundColor: category.color }}>{category.name}</div>
-                <p className={styles.date}>{product.date}</p>
+                <p className={styles.date}>{formateDate(product.date)}</p>
             </div>
             <div className={styles.product}>
                 <img src={`images/${category.icon}.png`} alt={category.name} />

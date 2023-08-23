@@ -7,11 +7,11 @@ import styles from './pages.module.scss';
 
 export const DataContext = createContext<{
   data: { categories: Category[]; products: Product[] };
-  sortedData: { categories: Category[]; products: Product[] };
-  setShownData: React.Dispatch<React.SetStateAction<{ categories: Category[]; products: Product[] }>>;
+  shownData: Product[];
+  setShownData: React.Dispatch<React.SetStateAction<Product[]>>;
 }>({
   data: { categories: [], products: [] },
-  sortedData: { categories: [], products: [] },
+  shownData: [],
   setShownData: () => {},
 });
 
@@ -20,10 +20,7 @@ export default function HomePageComponent() {
     categories: [],
     products: []
   });
-  const [sortedData, setShownData] = useState<{ categories: Category[]; products: Product[] }>({
-    categories: [],
-    products: []
-  });
+  const [shownData, setShownData] = useState<Product[]>([]);
     
   useEffect(() => {
     fetchData();
@@ -38,22 +35,19 @@ export default function HomePageComponent() {
         categories: responseCategories.data,
         products: responseProducts.data
       });
-      setShownData({
-        categories: responseCategories.data,
-        products: responseProducts.data
-      });
+      setShownData(responseProducts.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-      <DataContext.Provider value={{data, sortedData, setShownData}}>
+      <DataContext.Provider value={{data, shownData, setShownData}}>
           <div className={styles.pageContainer}>
               <div className={styles.header}>мое приложение</div>
               <FiltersComponent></FiltersComponent>
               <div className={styles.productContainer}>
-                  {sortedData.products.map((product:Product) => (
+                  {shownData.map((product:Product) => (
                       <ProductComponent product={product} key={product.id}></ProductComponent>
                   ))}
               </div>
