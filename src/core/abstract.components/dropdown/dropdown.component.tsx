@@ -38,7 +38,7 @@ export default function DropdownComponent({ sortList, selectedCategory }: { sort
     return (
         <div className={styles.dropdownMenu}>
             <div className={styles.dropdownHeader} onClick={() => setIsOpen(!isOpen)}>
-                <p>{sort ? sort.title : sortList[0].title}</p>
+                <p>{sort ? sort.title : 'отсортировать'}</p>
                 <img src="images/chevron.png" alt="" />
             </div>
             {isOpen && (
