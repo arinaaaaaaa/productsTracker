@@ -1,9 +1,10 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { Category, Product } from "../../core/interfaces";
+
+import styles from './pages.module.scss';
 import FiltersComponent from "../common/filters/filters.component";
 import ProductComponent from "../common/product/product.component";
-import styles from './pages.module.scss';
+import { Category, Product } from "../../core/interfaces";
 
 export const DataContext = createContext<{
   data: { categories: Category[]; products: Product[] };

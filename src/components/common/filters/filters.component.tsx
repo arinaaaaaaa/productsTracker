@@ -1,9 +1,10 @@
-import styles from './filters.module.scss';
 import { useContext, useState } from 'react';
+
+import styles from './filters.module.scss';
 import { DataContext } from '../../pages/home.page';
 import { Product } from '../../../core/interfaces';
-import DropdownComponent from '../../../core/abstract.components/dropdown/dropdown.component';
 import { Sort } from '../../../core/interfaces/sort.interface';
+import DropdownComponent from '../../../core/abstract.components/dropdown/dropdown.component';
 
 export default function FiltersComponent() {
   const sortList: Sort[] = [

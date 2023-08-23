@@ -1,7 +1,8 @@
-import { useContext, useEffect } from "react";
-import { Category, Product } from "../../../core/interfaces";
-import { DataContext } from "../../pages/home.page";
+import { useContext } from "react";
+
 import styles from "./product.module.scss";
+import { DataContext } from "../../pages/home.page";
+import { Category, Product } from "../../../core/interfaces";
 
 export default function ProductComponent({ product }: { product: Product }) {
     const data = useContext(DataContext);
