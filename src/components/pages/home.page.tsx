@@ -39,6 +39,11 @@ export default function HomePageComponent() {
         categories: responseCategories.data,
         products: responseProducts.data
       });
+      
+      setSortedData({
+        categories: responseCategories.data,
+        products: responseProducts.data
+      });
     } catch (error) {
       console.error(error);
     }
