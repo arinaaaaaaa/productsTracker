@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { Category } from "../../../core/interfaces/categories.interface";
-import { Product } from "../../../core/interfaces/products.interface";
+import { Category, Product } from "../../../core/interfaces";
 import { DataContext } from "../../pages/home.page";
 import styles from "./product.module.scss";
 

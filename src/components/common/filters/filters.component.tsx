@@ -1,12 +1,11 @@
 import styles from './filters.module.scss';
 import { useContext, useState } from 'react';
 import { DataContext } from '../../pages/home.page';
-import { Product } from '../../../core/interfaces/products.interface';
-import { Category } from '../../../core/interfaces/categories.interface';
+import { Category, Product } from '../../../core/interfaces';
 
 export default function FiltersComponent() {
     const data = useContext(DataContext);
-    const {setSortedData} = useContext(DataContext);
+    const {setShownData} = useContext(DataContext);
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
   
     function getCounter(categoryId: number): number {
@@ -30,7 +29,7 @@ export default function FiltersComponent() {
                 products: data.data.products.filter((product: Product) => product.category === categoryId)
             };
             //В данные для отображения сохраняются отфильтрованные данные
-            setSortedData(sortedData);
+            setShownData(sortedData);
             setSelectedCategoryId(categoryId)
         }
         //Если повторное нажатие на уже выбранную категорию (т.е. отмена фильтрации)
@@ -38,7 +37,7 @@ export default function FiltersComponent() {
             //Фильтры обнуляются
             setSelectedCategoryId(null);
             //Отображаются все данные, которые были получены с сервера
-            setSortedData(data.data);
+            setShownData(data.data);
         }
       }
   

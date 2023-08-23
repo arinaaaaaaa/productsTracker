@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { Category } from "../../core/interfaces/categories.interface";
-import { Product } from "../../core/interfaces/products.interface";
+import { Category, Product } from "../../core/interfaces";
 import FiltersComponent from "../common/filters/filters.component";
 import ProductComponent from "../common/product/product.component";
 import styles from './pages.module.scss';
@@ -9,11 +8,11 @@ import styles from './pages.module.scss';
 export const DataContext = createContext<{
   data: { categories: Category[]; products: Product[] };
   sortedData: { categories: Category[]; products: Product[] };
-  setSortedData: React.Dispatch<React.SetStateAction<{ categories: Category[]; products: Product[] }>>;
+  setShownData: React.Dispatch<React.SetStateAction<{ categories: Category[]; products: Product[] }>>;
 }>({
   data: { categories: [], products: [] },
   sortedData: { categories: [], products: [] },
-  setSortedData: () => {},
+  setShownData: () => {},
 });
 
 export default function HomePageComponent() {
@@ -21,7 +20,7 @@ export default function HomePageComponent() {
     categories: [],
     products: []
   });
-  const [sortedData, setSortedData] = useState<{ categories: Category[]; products: Product[] }>({
+  const [sortedData, setShownData] = useState<{ categories: Category[]; products: Product[] }>({
     categories: [],
     products: []
   });
@@ -39,8 +38,7 @@ export default function HomePageComponent() {
         categories: responseCategories.data,
         products: responseProducts.data
       });
-      
-      setSortedData({
+      setShownData({
         categories: responseCategories.data,
         products: responseProducts.data
       });
@@ -50,7 +48,7 @@ export default function HomePageComponent() {
   };
 
   return (
-      <DataContext.Provider value={{data, sortedData, setSortedData}}>
+      <DataContext.Provider value={{data, sortedData, setShownData}}>
           <div className={styles.pageContainer}>
               <div className={styles.header}>мое приложение</div>
               <FiltersComponent></FiltersComponent>
