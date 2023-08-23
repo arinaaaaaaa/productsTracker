@@ -63,7 +63,7 @@ export default function FiltersComponent() {
           </div>
         ))}
       </div>
-      <DropdownComponent sortList={sortList}></DropdownComponent>
+      <DropdownComponent sortList={sortList} selectedCategory={selectedCategoryId}></DropdownComponent>
     </div>
   );
 }

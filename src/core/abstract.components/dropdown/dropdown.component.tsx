@@ -1,27 +1,38 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../../../components/pages/home.page';
 import { Sort } from '../../interfaces/sort.interface';
 import styles from "./dropdown.module.scss";
 
-export default function DropdownComponent({ sortList }: { sortList: Sort[] }) {
-    const {shownData, setShownData} = useContext(DataContext);
+export default function DropdownComponent({ sortList, selectedCategory }: { sortList: Sort[], selectedCategory: number | null }) {
+    const {setShownData} = useContext(DataContext);
+    const data = useContext(DataContext);
     
     const [isOpen, setIsOpen] = useState(true);
     const [sort, setSort] = useState<Sort | null>(null);
 
+    useEffect(() => setSort(null), [selectedCategory])
+
     //Сортировка отображаемых продуктов по дате
     function sortData(sortItem: Sort) {
-        setSort(sortItem);
+        //Если выбран не ранее используемая сортировка
+        if (!sort || sortItem.id !== sort.id) {
+            setSort(sortItem);
       
-        setShownData((prevShownData) => {
-          const sortedByDate = prevShownData.slice().sort((productA, productB) => {
-            if (productA.date < productB.date) return (-1 * sortItem.order);
-            if (productA.date > productB.date) return (1 * sortItem.order);
-            return 0;
-          });
+            setShownData((prevShownData) => {
+            const sortedByDate = prevShownData.slice().sort((productA, productB) => {
+                if (productA.date < productB.date) return (-1 * sortItem.order);
+                if (productA.date > productB.date) return (1 * sortItem.order);
+                return 0;
+            });
 
-          return sortedByDate;
-        });
+            return sortedByDate;
+            });
+        }
+        //Если выбрана та же сортировка, отменить сортировку
+        else {
+            setSort(null);
+            setShownData(data.data.products);
+        }
       }
 
     return (
@@ -35,8 +46,8 @@ export default function DropdownComponent({ sortList }: { sortList: Sort[] }) {
                     {sortList.map((sortItem: Sort) => (
                         <div className={styles.item} key={sortItem.id} onClick={() => sortData(sortItem)}>
                             {sortItem.title}
-                            {sort && sort.id == sortItem.id ? (
-                                <img src="images/checkmark.png"></img>
+                            {sort && sort.id === sortItem.id ? (
+                                <img src="images/checkmark.png" alt=""></img>
                             ) : null }
                         </div>
                     ))}
